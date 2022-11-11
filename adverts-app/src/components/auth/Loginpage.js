@@ -17,8 +17,8 @@ const LoginPage = ({ onLogin }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(username, password);
-    login({ username, password }).then(onLogin, (err) =>
+    console.log(username, password, "Checked sale como: " + checked);
+    login({ username, password }, checked).then(onLogin, (err) =>
       console.log(err.data.message)
     );
   };
