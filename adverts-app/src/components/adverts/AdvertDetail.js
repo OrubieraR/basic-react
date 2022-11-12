@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import Layout from "../Layout/Layout";
+import Page from "../Layout/Page";
 
 import { useEffect, useState } from "react";
 import { getAdDetail } from "./service";
@@ -11,11 +11,11 @@ const AdvertDetailPage = (props) => {
 
   useEffect(() => {
     getAdDetail(adId).then((adDet) => setAdDet(adDet));
-  }, []);
+  }, [adId]);
   // console.log(adDet.name);
 
   return (
-    <Layout title="Detalle del anuncio." {...props}>
+    <Page title="Detalle del anuncio." {...props}>
       <div>Detalle del anuncio {adId}</div>
       <div>
         <p>
@@ -40,7 +40,7 @@ const AdvertDetailPage = (props) => {
         </p>
         <img width="300" heigth="300" src={adDet.photo} alt={adDet.name}></img>
       </div>
-    </Layout>
+    </Page>
   );
 };
 

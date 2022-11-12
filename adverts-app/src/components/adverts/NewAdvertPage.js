@@ -1,8 +1,8 @@
-import Layout from "../Layout/Layout";
+import Page from "../Layout/Page";
 
 const NewAdvertPage = (props) => {
   return (
-    <Layout title="Escribe tu anuncio." {...props}>
+    <Page title="Escribe tu anuncio." {...props}>
       <div>New Advert Page</div>
       <form>
         <br></br>
@@ -53,7 +53,7 @@ const NewAdvertPage = (props) => {
         <br></br>
         <br></br>
       </form>
-    </Layout>
+    </Page>
   );
 };
 

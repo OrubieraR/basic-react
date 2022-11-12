@@ -1,14 +1,14 @@
 import Header from "./Header";
+import { Outlet } from "react-router-dom";
 import "./Layout.css";
 
 const Layout = ({ title, children, ...props }) => (
-  <div>
+  <div className="layout">
     <Header {...props} />
-    <main>
-      <h2>{title}</h2>
-      <section>{children}</section>
+    <main className="layout-main bordered">
+      <Outlet />
     </main>
-    <footer>Copyright</footer>
+    <footer className="layout-footer bordered">Copyright</footer>
   </div>
 );
 

@@ -4,6 +4,8 @@ import AdsPage from "./components/adverts/AdvertsPage";
 import NewAdvertPage from "./components/adverts/NewAdvertPage";
 import LoginPage from "./components/auth/LoginPage";
 import AdvertDetailPage from "./components/adverts/AdvertDetail";
+import { RequireAuth } from "./components/auth/RequireAuth";
+import Layout from "./components/Layout/Layout";
 
 function App({ isInitallyLoged }) {
   const [isLogged, setIsLogged] = useState(isInitallyLoged);
@@ -13,23 +15,45 @@ function App({ isInitallyLoged }) {
     <div className="App">
       <Routes>
         <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
+
         <Route
           path="/adverts"
-          element={<AdsPage isLogged={isLogged} onLogout={handleLogout} />}
-        />
+          element={<Layout isLogged={isLogged} onLogout={handleLogout} />}
+        >
+          <Route
+            index
+            element={
+              <RequireAuth isLogged={isLogged}>
+                <AdsPage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path=":adId"
+            element={
+              <RequireAuth isLogged={isLogged}>
+                <AdvertDetailPage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="new"
+            element={
+              <RequireAuth isLogged={isLogged}>
+                <NewAdvertPage />
+              </RequireAuth>
+            }
+          />
+        </Route>
         <Route
-          path="/adverts/:adId"
+          path="/"
           element={
-            <AdvertDetailPage isLogged={isLogged} onLogout={handleLogout} />
+            <RequireAuth isLogged={isLogged}>
+              <Navigate to="/adverts" />
+            </RequireAuth>
           }
         />
-        <Route
-          path="/adverts/new"
-          element={
-            <NewAdvertPage isLogged={isLogged} onLogout={handleLogout} />
-          }
-        />
-        <Route path="/" element={<Navigate to="/adverts" />} />
+
         <Route
           path="/404"
           element={<div>404 | La página que intentas cargar no existe</div>}

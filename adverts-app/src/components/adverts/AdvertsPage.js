@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getLatestAds } from "./service";
 import { Link } from "react-router-dom";
 import Button from "../common/Button";
-import Layout from "../Layout/Layout";
+import Page from "../Layout/Page";
 import "./AdvertPage.css";
 
 const AdsPage = (props) => {
@@ -13,7 +13,7 @@ const AdsPage = (props) => {
   }, []);
 
   return (
-    <Layout title="Listado de anuncios:" {...props}>
+    <Page title="Listado de anuncios:" {...props}>
       <div>
         {ads.length ? (
           ads.map((ad) => (
@@ -33,7 +33,7 @@ const AdsPage = (props) => {
           <Button>Crea el primer anuncio</Button>
         )}
       </div>
-    </Layout>
+    </Page>
   );
 };
 
