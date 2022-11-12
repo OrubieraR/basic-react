@@ -1,8 +1,8 @@
 import Layout from "../Layout/Layout";
 
-const NewAdvertPage = () => {
+const NewAdvertPage = (props) => {
   return (
-    <Layout title="Escribe tu anuncio.">
+    <Layout title="Escribe tu anuncio." {...props}>
       <div>New Advert Page</div>
       <form>
         <br></br>
