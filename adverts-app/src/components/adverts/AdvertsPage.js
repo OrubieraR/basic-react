@@ -4,7 +4,7 @@ import Button from "../common/Button";
 import Layout from "../Layout/Layout";
 import "./AdvertPage.css";
 
-const AdsPage = () => {
+const AdsPage = (props) => {
   const [ads, setAds] = useState([]);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const AdsPage = () => {
   }, []);
 
   return (
-    <Layout title="Listado de anuncios:">
+    <Layout title="Listado de anuncios:" {...props}>
       <div className="AdsPage">
         {ads.length ? (
           ads.map((ad) => (

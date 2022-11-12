@@ -2,13 +2,17 @@ import { useState } from "react";
 import Button from "../common/Button";
 import FormField from "../common/FormField";
 import { login } from "./service";
+import "./LoginPage.css";
 
 const LoginPage = ({ onLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const [checked, setChecked] = useState(false);
+
   const handleChangeUsername = (event) => setUsername(event.target.value);
   const handleChangePassword = (event) => setPassword(event.target.value);
+  const handleErrorClick = () => setError(null);
   const handleChecked = () => {
     const value = document.querySelector("#rememberme").checked;
     setChecked(value);
@@ -17,9 +21,9 @@ const LoginPage = ({ onLogin }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(username, password, "Checked sale como: " + checked);
+    // console.log(username, password, "Checked sale como: " + checked);
     login({ username, password }, checked).then(onLogin, (err) =>
-      console.log(err.data.message)
+      setError(err)
     );
   };
 
@@ -67,6 +71,12 @@ const LoginPage = ({ onLogin }) => {
           </label>
         </div>
       </form>
+
+      {error && (
+        <div onClick={handleErrorClick} className="loginPage-error">
+          {error.message}
+        </div>
+      )}
     </div>
   );
 };

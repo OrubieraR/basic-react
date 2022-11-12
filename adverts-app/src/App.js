@@ -6,9 +6,14 @@ import LoginPage from "./components/auth/LoginPage";
 function App({ isInitallyLoged }) {
   const [isLogged, setIsLogged] = useState(isInitallyLoged);
   const handleLogin = () => setIsLogged(true);
+  const handleLogout = () => setIsLogged(false);
   return (
     <div className="App">
-      {isLogged ? <AdsPage /> : <LoginPage onLogin={handleLogin} />}
+      {isLogged ? (
+        <AdsPage onLogout={handleLogout} />
+      ) : (
+        <LoginPage onLogin={handleLogin} />
+      )}
 
       {/* <NewAdvertPage /> */}
     </div>
