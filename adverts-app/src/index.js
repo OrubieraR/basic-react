@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router } from "react-router-dom";
+
 import "./index.css";
 import App from "./App";
 import storage from "./utils/storage";
@@ -12,7 +14,9 @@ setAuthorizationHeader(accessToken);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App isInitallyLoged={!!accessToken} />
+    <Router>
+      <App isInitallyLoged={!!accessToken} />
+    </Router>
   </React.StrictMode>
 );
 
