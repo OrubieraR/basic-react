@@ -18,7 +18,7 @@ const AdsPage = (props) => {
   const [ads, setAds] = useState([]);
 
   useEffect(() => {
-    getLatestAds().then((ads) => setAds([]));
+    getLatestAds().then((ads) => setAds(ads));
   }, []);
 
   return (

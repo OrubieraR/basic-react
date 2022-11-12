@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Page from "../Layout/Page";
 
 import { useEffect, useState } from "react";
@@ -8,10 +8,21 @@ const AdvertDetailPage = (props) => {
   const { adId } = useParams();
   // console.log(adId);
   const [adDet, setAdDet] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getAdDetail(adId).then((adDet) => setAdDet(adDet));
-  }, [adId]);
+    getAdDetail(adId)
+      .then((adDet) => setAdDet(adDet))
+      .catch(
+        (error) => {
+          if (error.status === 404) {
+            navigate("404");
+          }
+          // console.log(error);
+        },
+        [adId, navigate]
+      );
+  });
   // console.log(adDet.name);
 
   return (
@@ -19,23 +30,23 @@ const AdvertDetailPage = (props) => {
       <div>Detalle del anuncio {adId}</div>
       <div>
         <p>
-          <strong>Nombre:</strong>
+          <strong>Nombre: </strong>
           {adDet.name}
         </p>
         <p>
-          <strong>Descripción:</strong>
+          <strong>Descripción: </strong>
           {adDet.description}
         </p>
         <p>
-          <strong>Precio:</strong>
+          <strong>Precio: </strong>
           {adDet.price}
         </p>
         <p>
-          <strong>Compra o venta:</strong>
+          <strong>Compra o venta: </strong>
           {adDet.sale}
         </p>
         <p>
-          <strong>Tags:</strong>
+          <strong>Tags: </strong>
           {adDet.tags}
         </p>
         <img width="300" heigth="300" src={adDet.photo} alt={adDet.name}></img>
