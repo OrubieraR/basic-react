@@ -14,6 +14,8 @@ const NewAdvertPage = (props) => {
   const [photo, setPhoto] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleChangeUsername = (event) => setUsername(event.target.value);
   const handleChangeCompvent = (event) => setCompvent(event.target.value);
@@ -34,11 +36,18 @@ const NewAdvertPage = (props) => {
       photo: photo,
       tags: tags,
     }).then(
-      function () {},
-      (err) => setError()
+      function (response) {
+        // console.log(location.pathname + "/" + response.id);
+        navigate("/adverts/" + response.id);
+      },
+      (error) => setError(error)
     );
   };
   // console.log(username, compvent, tags, price, photo);
+
+  const isEnabled = () => {
+    return username && description && compvent && price && tags;
+  };
 
   return (
     <Page title="Escribe tu anuncio." {...props}>
@@ -101,7 +110,7 @@ const NewAdvertPage = (props) => {
             name="tags"
             defaultValue={{ label: "Elige una categoría", value: 0 }}
           >
-            <option disabled>Elige una categoría</option>
+            <option>Elige una categoría</option>
             <option value="Work">Work</option>
             <option value="Motor">Motor</option>
             <option value="Lifestyle">Lifestyle</option>
@@ -137,7 +146,11 @@ const NewAdvertPage = (props) => {
         </label>
         <br></br>
         <br></br>
-        <Button type="submit" className="loginForm-input">
+        <Button
+          type="submit"
+          className="loginForm-input"
+          disabled={!isEnabled()}
+        >
           Crear anuncio
         </Button>
       </form>
