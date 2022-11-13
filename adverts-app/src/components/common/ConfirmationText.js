@@ -5,7 +5,6 @@ const ConfirmationText = (
   { className, label, action, dismiss, ...props },
   ref
 ) => {
-  const estado = { display: "none" };
   return (
     <div className="loginPage-error">
       <h2>{label}</h2>

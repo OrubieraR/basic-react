@@ -2,16 +2,18 @@ import { Link, NavLink } from "react-router-dom";
 import Button from "../common/Button";
 import { logout } from "../auth/service";
 import { useAuth } from "../auth/context";
-
+import { useEffect, useState } from "react";
 import classNames from "classnames";
 import logo, { ReactComponent as Icon } from "../../assets/twitter.svg";
 import "./Header.css";
+import ConfirmationText from "../common/ConfirmationText";
 
 const Header = ({ className, isLogged, onLogout }) => {
   const handleLogoutClick = async () => {
     await logout();
     onLogout();
   };
+  const [aviso, setAviso] = useState(false);
   return (
     <header className={classNames("header", className)}>
       <Link to="/">
@@ -41,9 +43,17 @@ const Header = ({ className, isLogged, onLogout }) => {
           Ver todos los anuncios
         </NavLink>
         {isLogged ? (
-          <Button className="header-button" onClick={handleLogoutClick}>
-            Logout
-          </Button>
+          <div>
+            <Button className="header-button" onClick={() => setAviso(true)}>
+              Logout
+            </Button>
+            {aviso && (
+              <ConfirmationText
+                action={handleLogoutClick}
+                dismiss={() => setAviso(false)}
+              ></ConfirmationText>
+            )}
+          </div>
         ) : (
           <Button
             as={Link}
