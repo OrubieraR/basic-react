@@ -65,6 +65,7 @@ const LoginPage = ({ onLogin }) => {
           onChange={handleChangeUsername}
           value={username}
         />
+        <br></br>
         <FormField
           type="password"
           name="password"
@@ -73,7 +74,7 @@ const LoginPage = ({ onLogin }) => {
           onChange={handleChangePassword}
           value={password}
         />
-
+        <br></br>
         <Button
           type="submit"
           className="loginForm-input"
@@ -81,6 +82,7 @@ const LoginPage = ({ onLogin }) => {
         >
           Log in
         </Button>
+
         <div>
           <label>
             <input

@@ -22,7 +22,7 @@ const AdvertDetailPage = (props) => {
         },
         [adId, navigate]
       );
-  });
+  }, []);
   // console.log(adDet.name);
 
   return (
@@ -39,7 +39,7 @@ const AdvertDetailPage = (props) => {
         </p>
         <p>
           <strong>Precio: </strong>
-          {adDet.price}
+          {adDet.price} €
         </p>
         <p>
           <strong>Compra o venta: </strong>
@@ -49,7 +49,12 @@ const AdvertDetailPage = (props) => {
           <strong>Tags: </strong>
           {adDet.tags}
         </p>
-        <img width="300" heigth="300" src={adDet.photo} alt={adDet.name}></img>
+        <img
+          width="300"
+          heigth="300"
+          src={adDet.photo}
+          alt={`${adDet.photo ? adDet.name : "No hay ninguna foto disponible"}`}
+        ></img>
       </div>
     </Page>
   );

@@ -21,6 +21,8 @@ const AdsPage = (props) => {
     getLatestAds().then((ads) => setAds(ads));
   }, []);
 
+  // Zona de filtros. https://www.youtube.com/watch?v=CF_lbDaSo48 min 14
+
   return (
     <Page title="Listado de anuncios:" {...props}>
       <div>
@@ -30,7 +32,7 @@ const AdsPage = (props) => {
               <Link to={`/adverts/${ad.id}`}>
                 <ul>
                   <li>Artículo: {ad.name}</li>
-                  <li>Precio: {ad.price}</li>
+                  <li>Precio: {ad.price} €</li>
                   <li>{ad.sale ? "En venta." : "Se busca para comprar."}</li>
                   <li>Etiquetado con: {ad.tags}</li>
                   <li>Anuncio creado el: {ad.createdAt}</li>

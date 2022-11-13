@@ -12,3 +12,8 @@ export const getAdDetail = (adId) => {
   const url = adDetail + adId;
   return client.get(url);
 };
+
+export const setAd = (newAd) => {
+  const url = adsUrl;
+  return client.post(url, newAd);
+};
