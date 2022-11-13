@@ -73,6 +73,7 @@ const AdvertDetailPage = (props) => {
         <ConfirmationText
           label="¿Seguro que quieres borrar el anuncio?"
           action={borrarAnuncio}
+          dismiss={() => setAviso(false)}
         ></ConfirmationText>
       )}
     </Page>
