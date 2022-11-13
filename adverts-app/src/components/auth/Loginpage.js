@@ -27,9 +27,9 @@ const LoginPage = ({ onLogin }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     // console.log(username, password, "Checked sale como: " + checked);
-    login({ username, password }, checked).then(
+    login({ email: username, password: password }, checked).then(
       function () {
-        login({ username, password }, checked);
+        // login({ username, password }, checked);
         onLogin();
         const to = location.state?.from?.pathname || "/";
         // console.log(to);

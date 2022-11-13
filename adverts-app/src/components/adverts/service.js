@@ -1,7 +1,6 @@
 import client from "../../api/client";
 
-const adsUrl = "api/ads";
-const adDetail = `api/ads/`;
+const adsUrl = "/v1/adverts";
 
 export const getLatestAds = () => {
   const url = adsUrl;
@@ -9,16 +8,16 @@ export const getLatestAds = () => {
 };
 
 export const getAdDetail = (adId) => {
-  const url = adDetail + adId;
+  const url = adsUrl + "/" + adId;
   return client.get(url);
 };
 
-export const setAd = (newAd) => {
+export const setAd = async (newAd) => {
   const url = adsUrl;
-  return client.post(url, newAd);
+  return await client.post(url, newAd);
 };
 
 export const removeAd = (adId) => {
-  const url = adDetail + adId;
+  const url = adsUrl + "/" + adId;
   return client.delete(url);
 };

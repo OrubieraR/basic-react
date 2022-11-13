@@ -7,8 +7,8 @@ import { setAd } from "./service";
 import "../auth/LoginPage.css";
 
 const NewAdvertPage = (props) => {
-  const [username, setUsername] = useState("");
-  const [compvent, setCompvent] = useState("");
+  const [name, setName] = useState("");
+  const [sale, setSale] = useState("");
   let [tags, setTags] = useState("");
   const [price, setPrice] = useState("");
   const [photo, setPhoto] = useState("");
@@ -17,8 +17,8 @@ const NewAdvertPage = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleChangeUsername = (event) => setUsername(event.target.value);
-  const handleChangeCompvent = (event) => setCompvent(event.target.value);
+  const handleChangeUsername = (event) => setName(event.target.value);
+  const handleChangeSale = (event) => setSale(event.target.value);
   const handleChangeTags = (event) => setTags(event.target.value);
   const handleChangePrice = (event) => setPrice(event.target.value);
   const handleChangePhoto = (event) => setPhoto(event.target.files);
@@ -28,15 +28,25 @@ const NewAdvertPage = (props) => {
 
   const handleSubmitNewAdvert = async (event) => {
     event.preventDefault();
-
-    await setAd({
-      name: username,
-      description: description,
-      sale: compvent,
-      price: price,
-      photo: photo,
-      tags: tags,
-    }).then(
+    const formData = new FormData(event.target);
+    formData.append("name", name);
+    console.log(name);
+    formData.append("description", description);
+    formData.append("sale", sale);
+    formData.append("price", price);
+    formData.append("photo", photo);
+    formData.append("tags", tags);
+    // console.log(formData.get("photo"));
+    // console.log(formData.get("price"));
+    await setAd(formData).then(
+      //   {
+      //   name: name,
+      //   description: description,
+      //   sale: compvent,
+      //   price: price,
+      //   photo: photo,
+      //   tags: tags,
+      // }
       function (response) {
         // console.log(location.pathname + "/" + response.id);
         navigate("/adverts/" + response.id);
@@ -44,10 +54,10 @@ const NewAdvertPage = (props) => {
       (error) => setError(error)
     );
   };
-  // console.log(username, compvent, tags, price, photo);
+  // console.log(name, compvent, tags, price, photo);
 
   const isEnabled = () => {
-    return username && description && compvent && price && tags;
+    return name && description && sale && price && tags;
   };
 
   return (
@@ -59,10 +69,10 @@ const NewAdvertPage = (props) => {
           Nombre:
           <input
             type="text"
-            name="username"
+            name="name"
             placeholder="Introduce tu nombre."
             onChange={handleChangeUsername}
-            value={username}
+            value={name}
           ></input>
         </label>
         <br></br>
@@ -71,18 +81,18 @@ const NewAdvertPage = (props) => {
           Compra:
           <input
             type="radio"
-            name="compvent"
+            name="sale"
             value="compra"
-            onChange={handleChangeCompvent}
+            onChange={handleChangeSale}
           />
         </label>
         <label>
           Venta:
           <input
             type="radio"
-            name="compvent"
+            name="sale"
             value="venta"
-            onChange={handleChangeCompvent}
+            onChange={handleChangeSale}
           />
         </label>
         <br></br>
