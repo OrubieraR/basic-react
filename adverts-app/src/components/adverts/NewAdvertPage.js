@@ -24,6 +24,7 @@ const NewAdvertPage = (props) => {
   const handleChangePhoto = (event) => setPhoto(event.target.files);
   const handleChandgeDescription = (event) =>
     setDescription(event.target.value);
+  const handleErrorClick = () => setError(null);
 
   const handleSubmitNewAdvert = async (event) => {
     event.preventDefault();

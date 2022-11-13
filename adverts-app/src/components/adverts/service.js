@@ -17,3 +17,8 @@ export const setAd = (newAd) => {
   const url = adsUrl;
   return client.post(url, newAd);
 };
+
+export const removeAd = (adId) => {
+  const url = adDetail + adId;
+  return client.delete(url);
+};
