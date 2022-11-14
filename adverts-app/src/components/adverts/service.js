@@ -12,9 +12,10 @@ export const getAdDetail = (adId) => {
   return client.get(url);
 };
 
-export const setAd = async (newAd) => {
+export const setAd = (newAd) => {
+  // const config = { "Content-Type": "multipart/form-data" };
   const url = adsUrl;
-  return await client.post(url, newAd);
+  return client.post(url, newAd);
 };
 
 export const removeAd = (adId) => {

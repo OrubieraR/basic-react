@@ -29,35 +29,30 @@ const NewAdvertPage = (props) => {
   const handleSubmitNewAdvert = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-    formData.append("name", name);
-    console.log(name);
-    formData.append("description", description);
-    formData.append("sale", sale);
-    formData.append("price", price);
-    formData.append("photo", photo);
-    formData.append("tags", tags);
+
+    // formData.append("name", name);
+    // console.log(name);
+    // formData.append("description", description);
+    // formData.append("sale", sale);
+    // formData.append("price", price);
+    // formData.append("photo", photo);
+    // formData.append("tags", tags);
     // console.log(formData.get("photo"));
+
     // console.log(formData.get("price"));
     await setAd(formData).then(
-      //   {
-      //   name: name,
-      //   description: description,
-      //   sale: compvent,
-      //   price: price,
-      //   photo: photo,
-      //   tags: tags,
-      // }
       function (response) {
         // console.log(location.pathname + "/" + response.id);
         navigate("/adverts/" + response.id);
       },
+
       (error) => setError(error)
     );
   };
   // console.log(name, compvent, tags, price, photo);
 
   const isEnabled = () => {
-    return name && description && sale && price && tags;
+    return name && sale && price && tags;
   };
 
   return (
@@ -97,7 +92,7 @@ const NewAdvertPage = (props) => {
         </label>
         <br></br>
         <br></br>
-        <label>
+        {/* <label>
           Descripción del producto:
           <textarea
             type="text"
@@ -106,7 +101,7 @@ const NewAdvertPage = (props) => {
           ></textarea>
         </label>
         <br></br>
-        <br></br>
+        <br></br> */}
         {/* Para el select hay que asociar un estado */}
         <label>
           Selecciona tus tags:
